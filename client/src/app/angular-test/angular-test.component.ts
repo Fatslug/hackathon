@@ -7,27 +7,25 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
   templateUrl: 'angular-test.component.html',
   styleUrls: ['angular-test.component.css']
 })
-export class AngularTestComponent implements OnInit {
+export class AngularTestComponent {
 
-  ngOnInit() {
-  }
+    items: FirebaseListObservable<any[]>;
+    constructor(public af: AngularFire) {
+        this.af.auth.subscribe(auth => console.log(auth));
+        this.items = af.database.list('/items');
+    }
 
-  items: FirebaseListObservable<any[]>;
-  constructor(public af: AngularFire) {
-      this.af.auth.subscribe(auth => console.log(auth));
-      this.items = af.database.list('/items');
-  }
+    login() {
+        console.log("Logging in");
+        this.af.auth.login();
+    }
 
-  login() {
-      this.af.auth.login();
-  }
-
-  pushData(userId: string) {
+    pushData(userId: string) {
       this.items.push({
           "value": userId
       });
 
       console.log(this.af.auth);
-  }
+    }
 
 }
