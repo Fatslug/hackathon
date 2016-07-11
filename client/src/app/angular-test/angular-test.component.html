@@ -1,0 +1,11 @@
+<br />
+
+<ul *ngFor="let item of items | async">
+    <li class = "text">
+        {{ item.value }}
+    </li>
+</ul>
+
+<br />
+
+<button (click)="pushData('Test3 Value')">Push Data</button>
