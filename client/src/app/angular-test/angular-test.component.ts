@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AngularFire, FirebaseListObservable, AuthProviders } from 'angularfire2';
 
 @Component({
   moduleId: module.id,
@@ -17,7 +17,9 @@ export class AngularTestComponent {
 
     login() {
         console.log("Logging in");
-        this.af.auth.login();
+        this.af.auth.login({
+            provider: AuthProviders.Facebook
+        });
     }
 
     pushData(userId: string) {
