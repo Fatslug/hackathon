@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFire, FirebaseListObservable, AuthProviders, FirebaseAuth } from 'angularfire2';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../shared/auth/index';
 
 @Component({
   moduleId: module.id,
@@ -7,21 +8,17 @@ import { AngularFire, FirebaseListObservable, AuthProviders, FirebaseAuth } from
   templateUrl: 'login.component.html',
   styleUrls: ['login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-    items: FirebaseListObservable<any[]>;
-    constructor(public af: AngularFire, public auth: FirebaseAuth) {
-        this.items = af.database.list('/ideas');
+    constructor(private auth: AuthService) {}
+
+    signInWithFacebook(): void {
+        this.auth.signInWithFacebook();
+        // .then(() => this.postSignIn());
     }
 
-    ngOnInit() {
-    }
-
-    login() {
-      console.log("Logging in");
-      this.af.auth.login({
-          provider: AuthProviders.Facebook
-      });
-    }
+    // private postSignIn(): void {
+    //     this.router.navigate(['/tasks']);
+    // }
 
 }
