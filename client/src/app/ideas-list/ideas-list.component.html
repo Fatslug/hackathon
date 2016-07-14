@@ -1,0 +1,13 @@
+<ul *ngFor="let idea of ideas | async">
+    <li class = "text">
+        <h1>{{ idea.title }}</h1>
+        <span>{{ idea.timestamp | date }} -- {{ idea.userID }}</span>
+        <p>
+            {{ idea.description }}
+        </p>
+        <p>
+            <b>{{ idea.brokerage }}</b> -- {{ idea.province }}
+        </p>
+        <button (click) = "delete(idea.$key)">delete</button>
+    </li>
+</ul>

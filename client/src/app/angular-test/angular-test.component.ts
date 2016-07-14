@@ -30,4 +30,10 @@ export class AngularTestComponent {
       console.log(this.af.auth);
     }
 
+    delete(itemID: string) {
+        this.items.remove({
+            "$key": itemID
+        })
+    }
+
 }

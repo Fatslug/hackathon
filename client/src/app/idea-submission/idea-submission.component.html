@@ -1,0 +1,65 @@
+<form name = "ideaSubmission" id = "ideaSubmission">
+    <label for = "ideaTitle">Idea Title:</label><br />
+    <input type = "text" name = "ideaTitle" id = "ideaTitle" [(ngModel)] = "ideaTitle" />
+
+    <br />
+    <br />
+
+    <label for = "ideaDescription">Idea Description:</label><br />
+    <textarea name = "ideaDescription" id = "ideaDescription" [(ngModel)] = "ideaDescription"></textarea>
+
+    <br />
+    <br />
+
+    <label for = "brokerage">Brokerage:</label><br />
+    <input type = "text" name = "brokerage" id = "brokerage" [(ngModel)] = "brokerage" />
+
+    <br />
+    <br />
+
+    <label for = "province">Province:</label><br />
+    <select name = "province" id = "province" [(ngModel)] = "province">
+        <option value = "AB">
+            Alberta
+        </option>
+        <option value = "BC">
+            British Columbia
+        </option>
+        <option value = "MB">
+            Manitoba
+        </option>
+        <option value = "NB">
+            New Brunswick
+        </option>
+        <option value = "NL">
+            Newfoundland
+        </option>
+        <option value = "NS">
+            Nova Scotia
+        </option>
+        <option value = "NT">
+            Northwest Territories
+        </option>
+        <option value = "NU">
+            Nunavut
+        </option>
+        <option value = "ON">
+            Ontario
+        </option>
+        <option value = "PE">
+            Prince Edward Island
+        </option>
+        <option value = "QC">
+            Quebec
+        </option>
+        <option value = "SK">
+            Saskatchewan
+        </option>
+        <option value = "YK">
+            Yukon
+        </option>
+    </select>
+
+    <input type = "submit" (click)="pushData($event)" value = "submit" />
+
+</form>

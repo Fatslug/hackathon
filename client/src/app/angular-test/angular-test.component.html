@@ -4,7 +4,7 @@
 
 <ul *ngFor="let item of items | async">
     <li class = "text">
-        {{ item.value }}
+        {{ item.value }} <button (click) = "delete(item.$key)">x</button>
     </li>
 </ul>
 
