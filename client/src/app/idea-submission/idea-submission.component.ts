@@ -9,42 +9,38 @@ import { AngularFire, FirebaseListObservable, FirebaseAuth, FirebaseAuthState } 
 })
 export class IdeaSubmissionComponent implements OnInit {
 
-    ngOnInit() {
-    }
-
     ideaTitle: string;
     ideaDescription: string;
     brokerage: string;
     province: string;
-    fulltime: number;
-
+    timestamp: number;
     currentUser: string;
-    items: FirebaseListObservable<any[]>;
+    ideas: FirebaseListObservable<any[]>;
 
     constructor(public af: AngularFire, public auth: FirebaseAuth) {
-        this.items = af.database.list('/ideas');
         this.af.auth.subscribe(auth => {
-            console.log(auth)
             this.currentUser = auth.uid;
+            this.ideas = af.database.list('/ideas');
         });
+    }
+
+    ngOnInit() {
     }
 
     pushData(event) {
         event.preventDefault();
 
-        this.fulltime = Date.now();
-        var d = new Date(this.fulltime);
-        var n = d.getFullYear();
+        this.timestamp = Date.now();
+        var d = new Date(this.timestamp);
 
-        console.log(n);
         // console.log(d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear());
         // console.log(this.currentUser);
         //
         // console.log(this.ideaTitle);
 
-        this.items.push({
+        this.ideas.push({
             "userID": this.currentUser,
-            "timestamp": this.fulltime,
+            "timestamp": this.timestamp,
             "title": this.ideaTitle,
             "description": this.ideaDescription,
             "brokerage": this.brokerage,
