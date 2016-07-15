@@ -1,0 +1,13 @@
+<li class = "text">
+    <h1>{{ idea.title }}</h1>
+    <h2>Total Votes: {{ idea.votes }}</h2>
+    <span>{{ idea.timestamp | date }} -- {{ idea.userID }}</span>
+    <p>
+        {{ idea.description }}
+    </p>
+    <p>
+        <b>{{ idea.brokerage }}</b> -- {{ idea.province }}
+    </p>
+    <idea-voting [ideaID] = "idea.$key" (onVote) = "addVote($event, idea.$key)"></idea-voting>
+    <button (click) = "delete(idea.$key)">delete</button>
+</li>

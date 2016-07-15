@@ -1,7 +1,8 @@
-<h1>
-  {{title}}
-</h1>
+<app-header
+    [authenticated]="auth.authenticated"
+    (signOut)="signOut()">
+</app-header>
 
-<app-login></app-login>
-<app-idea-submission></app-idea-submission>
-<app-ideas-list></app-ideas-list>
+<main class="main">
+    <router-outlet></router-outlet>
+</main>

@@ -1,0 +1,6 @@
+<ideas-list
+    [filter]="filter | async"
+    [ideas]="ideaService.visibleIdeas$"
+    (remove)="ideaService.removeIdea($event)"
+    (update)="ideaService.updateidea($event.idea, $event.changes)">
+</ideas-list>

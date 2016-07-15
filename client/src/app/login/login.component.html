@@ -1,6 +1,6 @@
-<div *ngIf="auth">
+<div *ngIf="auth.authState">
     You are logged in!
 </div>
-<div *ngIf="!(auth)">
+<div *ngIf="!(auth.authState)">
     <button (click) = "signInWithFacebook()">Login with Facebook</button>
 </div>

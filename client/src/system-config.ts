@@ -45,6 +45,8 @@ const barrels: string[] = [
   'app/login',
   'app/ideas-list',
   'app/idea-voting',
+  'app/idea-item',
+  'app/ideas',
   /** @cli-barrel */
 ];
 

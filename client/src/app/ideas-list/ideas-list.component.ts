@@ -1,45 +1,46 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFire, FirebaseListObservable, FirebaseAuth } from 'angularfire2';
-import { IdeaVotingComponent } from '../idea-voting';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { FirebaseListObservable } from 'angularfire2';
+import { IdeaInterface } from '../shared/ideas';
+import { IdeaItemComponent } from '../idea-item';
 
 @Component({
   moduleId: module.id,
-  selector: 'app-ideas-list',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'ideas-list',
   templateUrl: 'ideas-list.component.html',
   styleUrls: ['ideas-list.component.css'],
-  directives: [IdeaVotingComponent]
+  directives: [IdeaItemComponent]
 })
-export class IdeasListComponent implements OnInit {
+export class IdeasListComponent {
 
-    ideas: FirebaseListObservable<any>;
-    votesSnap: FirebaseListObservable<any>;
-    votesTally: any;
+    @Input() filter: string;
+    @Input() ideas: FirebaseListObservable<IdeaInterface[]>;
 
-    constructor(public af: AngularFire) {
-        this.af.auth.subscribe(auth => {
-            this.ideas = af.database.list('/ideas');
-            this.votesSnap = af.database.list('/votes', { preserveSnapshot: true });
-            this.votesSnap.subscribe(snapshots => {
-                snapshots.forEach(snapshot => {
-                    console.log(snapshot.val().ideaID);
-                    this.votesTally += snapshot.val().voteType;
-                });
-            })
-        });
-    }
+    @Output() remove: EventEmitter<any> = new EventEmitter(false);
+    @Output() update: EventEmitter<any> = new EventEmitter(false);
 
-    ngOnInit() {
-    }
-
-    delete(ideaID: string) {
-        this.ideas.remove({
-          "$key": ideaID
-        });
-    }
-
-    addVote(voteType: any, ideaID: string) {
-        console.log(ideaID + ": " + voteType.value);
-        console.log(this.votesTally);
-    }
+    // ideas: FirebaseListObservable<any>;
+    // votesSnap: FirebaseListObservable<any>;
+    // votesTally: any;
+    //
+    // constructor(public af: AngularFire) {
+    //     this.af.auth.subscribe(auth => {
+    //         this.ideas = af.database.list('/ideas');
+    //     });
+    // }
+    //
+    // ngOnInit() {
+    // }
+    //
+    // delete(ideaID: string) {
+    //     this.ideas.remove({
+    //       "$key": ideaID
+    //     });
+    // }
+    //
+    // addVote(voteType: any, ideaID: string) {
+    //     console.log(ideaID + ": " + voteType.value);
+    //     console.log(this.votesTally);
+    // }
 
 }
