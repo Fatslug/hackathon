@@ -9,5 +9,5 @@
         <b>{{ idea.brokerage }}</b> -- {{ idea.province }}
     </p>
     <idea-voting [ideaID] = "idea.$key" (onVote) = "addVote($event, idea.$key)"></idea-voting>
-    <button (click) = "delete(idea.$key)">delete</button>
+    <button (click) = "remove.emit()">delete</button>
 </li>

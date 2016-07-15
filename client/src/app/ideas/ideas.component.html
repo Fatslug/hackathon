@@ -1,3 +1,6 @@
+<idea-submission-form  (createIdea)="ideaService.createIdea($event)"></idea-submission-form>
+<!-- <button (click) = "submitPage()">Submit an idea</button> -->
+
 <ideas-list
     [filter]="filter | async"
     [ideas]="ideaService.visibleIdeas$"

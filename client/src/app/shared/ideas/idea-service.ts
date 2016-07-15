@@ -49,8 +49,10 @@ export class IdeaService {
         }
     }
 
-    createIdea(title: string): firebase.Promise<any> {
-        return this.ideas$.push(new Idea(title));
+    createIdea(ideaObj: any): firebase.Promise<any> {
+        console.log(ideaObj);
+        return this.ideas$.push(new Idea(ideaObj.userID, ideaObj.title, ideaObj.description, ideaObj.province, ideaObj.brokerage));
+        // return this.ideas$.push(new Idea(userID, title, description, province, brokerage));
     }
 
     removeIdea(idea: IdeaInterface): firebase.Promise<any> {

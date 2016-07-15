@@ -47,6 +47,7 @@ const barrels: string[] = [
   'app/idea-voting',
   'app/idea-item',
   'app/ideas',
+  'app/idea-submission-form',
   /** @cli-barrel */
 ];
 
