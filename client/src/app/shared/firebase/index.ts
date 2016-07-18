@@ -15,7 +15,7 @@ export const FIREBASE_APP_PROVIDERS: any[] = [
         storageBucket: "hackathon-79470.appspot.com"
     }),
     firebaseAuthConfig({
-        method: AuthMethods.Redirect,
+        method: AuthMethods.Password,
         remember: 'default'
     })
 ];

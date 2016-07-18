@@ -1,6 +1,14 @@
-<div *ngIf="auth.authState">
-    You are logged in!
-</div>
-<div *ngIf="!(auth.authState)">
-    <button (click) = "signInWithFacebook()">Login with Facebook</button>
-</div>
+<form>
+    <label for = "email">Email: </label>
+    <input type = "text" name = "email" id = "email" [(ngModel)] = "email" />
+
+    <br />
+    <br />
+
+    <label for = "password">Password: </label>
+    <input type = "password" name = "password" id = "password" [(ngModel)] = "password" />
+
+    <br />
+
+    <button (click) = "signInWithEmail()">Login with Email</button>
+</form>

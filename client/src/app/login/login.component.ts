@@ -12,9 +12,14 @@ export class LoginComponent {
 
     constructor(private auth: AuthService, private router: Router) {}
 
-    signInWithFacebook(): void {
-        this.auth.signInWithFacebook()
-            .then(() => this.postSignIn());
+    email: string;
+    password: string;
+
+    signInWithEmail(): void {
+        this.auth.signInWithEmail({
+            email: this.email,
+            password: this.password
+        }).then(() => this.postSignIn());
     }
 
     private postSignIn(): void {

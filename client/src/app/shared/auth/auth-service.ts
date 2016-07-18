@@ -19,14 +19,22 @@ export class AuthService {
         return this.authenticated ? this.authState.uid : '';
     }
 
-    signIn(provider: number): firebase.Promise<FirebaseAuthState> {
-        return this.auth$.login({provider}).catch(error => console.log('ERROR @ AuthService#signIn() :', error));
+    signIn(provider: number, creds: any): firebase.Promise<FirebaseAuthState> {
+        return this.auth$.login({
+            provider,
+            email: creds.email,
+            password: creds.password
+        }).catch(error => console.log('ERROR @ AuthService#signIn() :', error));
     }
 
-    signInWithFacebook(): firebase.Promise<FirebaseAuthState> {
-        return this.signIn(AuthProviders.Facebook);
+    signInWithEmail(credentials: any): firebase.Promise<FirebaseAuthState> {
+        return this.signIn(AuthProviders.Password, credentials);
     }
 
+    // signInWithFacebook(): firebase.Promise<FirebaseAuthState> {
+    //     return this.signIn(AuthProviders.Facebook);
+    // }
+    //
     // signInWithGoogle(): firebase.Promise<FirebaseAuthState> {
     //     return this.signIn(AuthProviders.Google);
     // }
